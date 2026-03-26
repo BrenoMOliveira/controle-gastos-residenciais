@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\backend",
+    "\\backend\\src",
+    "\\backend\\src\\ControleGastos.Api",
+    "\\backend\\src\\ControleGastos.Domain",
+    "\\backend\\src\\ControleGastos.Domain\\Entities",
+    "\\backend\\src\\ControleGastos.Infrastructure",
+    "\\backend\\src\\ControleGastos.Infrastructure\\Persistence",
+    "\\backend\\tests",
+    "\\backend\\tests\\ControleGastos.Tests"
+  ],
+  "SelectedNode": "\\backend\\tests\\ControleGastos.Tests\\ControleGastos.Tests.csproj",
+  "PreviewInSolutionExplorer": false
+}

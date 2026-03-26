@@ -1,0 +1,16 @@
+C:\Users\Breno\controle-gastos-residenciais\backend\src\ControleGastos.Application\bin\Debug\net9.0\ControleGastos.Application.deps.json
+C:\Users\Breno\controle-gastos-residenciais\backend\src\ControleGastos.Application\bin\Debug\net9.0\ControleGastos.Application.dll
+C:\Users\Breno\controle-gastos-residenciais\backend\src\ControleGastos.Application\bin\Debug\net9.0\ControleGastos.Application.pdb
+C:\Users\Breno\controle-gastos-residenciais\backend\src\ControleGastos.Application\bin\Debug\net9.0\ControleGastos.Domain.dll
+C:\Users\Breno\controle-gastos-residenciais\backend\src\ControleGastos.Application\bin\Debug\net9.0\ControleGastos.Domain.pdb
+C:\Users\Breno\controle-gastos-residenciais\backend\src\ControleGastos.Application\obj\Debug\net9.0\ControleGastos.Application.csproj.AssemblyReference.cache
+C:\Users\Breno\controle-gastos-residenciais\backend\src\ControleGastos.Application\obj\Debug\net9.0\ControleGastos.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Breno\controle-gastos-residenciais\backend\src\ControleGastos.Application\obj\Debug\net9.0\ControleGastos.Application.AssemblyInfoInputs.cache
+C:\Users\Breno\controle-gastos-residenciais\backend\src\ControleGastos.Application\obj\Debug\net9.0\ControleGastos.Application.AssemblyInfo.cs
+C:\Users\Breno\controle-gastos-residenciais\backend\src\ControleGastos.Application\obj\Debug\net9.0\ControleGastos.Application.csproj.CoreCompileInputs.cache
+C:\Users\Breno\controle-gastos-residenciais\backend\src\ControleGastos.Application\obj\Debug\net9.0\ControleGastos.Application.sourcelink.json
+C:\Users\Breno\controle-gastos-residenciais\backend\src\ControleGastos.Application\obj\Debug\net9.0\Controle.36F2AAE6.Up2Date
+C:\Users\Breno\controle-gastos-residenciais\backend\src\ControleGastos.Application\obj\Debug\net9.0\ControleGastos.Application.dll
+C:\Users\Breno\controle-gastos-residenciais\backend\src\ControleGastos.Application\obj\Debug\net9.0\refint\ControleGastos.Application.dll
+C:\Users\Breno\controle-gastos-residenciais\backend\src\ControleGastos.Application\obj\Debug\net9.0\ControleGastos.Application.pdb
+C:\Users\Breno\controle-gastos-residenciais\backend\src\ControleGastos.Application\obj\Debug\net9.0\ref\ControleGastos.Application.dll

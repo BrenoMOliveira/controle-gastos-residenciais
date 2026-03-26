@@ -1,0 +1,12 @@
+C:\Users\Breno\controle-gastos-residenciais\backend\src\ControleGastos.Domain\bin\Debug\net9.0\ControleGastos.Domain.deps.json
+C:\Users\Breno\controle-gastos-residenciais\backend\src\ControleGastos.Domain\bin\Debug\net9.0\ControleGastos.Domain.dll
+C:\Users\Breno\controle-gastos-residenciais\backend\src\ControleGastos.Domain\bin\Debug\net9.0\ControleGastos.Domain.pdb
+C:\Users\Breno\controle-gastos-residenciais\backend\src\ControleGastos.Domain\obj\Debug\net9.0\ControleGastos.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Breno\controle-gastos-residenciais\backend\src\ControleGastos.Domain\obj\Debug\net9.0\ControleGastos.Domain.AssemblyInfoInputs.cache
+C:\Users\Breno\controle-gastos-residenciais\backend\src\ControleGastos.Domain\obj\Debug\net9.0\ControleGastos.Domain.AssemblyInfo.cs
+C:\Users\Breno\controle-gastos-residenciais\backend\src\ControleGastos.Domain\obj\Debug\net9.0\ControleGastos.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Breno\controle-gastos-residenciais\backend\src\ControleGastos.Domain\obj\Debug\net9.0\ControleGastos.Domain.sourcelink.json
+C:\Users\Breno\controle-gastos-residenciais\backend\src\ControleGastos.Domain\obj\Debug\net9.0\ControleGastos.Domain.dll
+C:\Users\Breno\controle-gastos-residenciais\backend\src\ControleGastos.Domain\obj\Debug\net9.0\refint\ControleGastos.Domain.dll
+C:\Users\Breno\controle-gastos-residenciais\backend\src\ControleGastos.Domain\obj\Debug\net9.0\ControleGastos.Domain.pdb
+C:\Users\Breno\controle-gastos-residenciais\backend\src\ControleGastos.Domain\obj\Debug\net9.0\ref\ControleGastos.Domain.dll

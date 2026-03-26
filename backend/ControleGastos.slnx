@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/ControleGastos.Api/ControleGastos.Api.csproj" />
+    <Project Path="src/ControleGastos.Application/ControleGastos.Application.csproj" />
+    <Project Path="src/ControleGastos.Domain/ControleGastos.Domain.csproj" />
+    <Project Path="src/ControleGastos.Infrastructure/ControleGastos.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/ControleGastos.Tests/ControleGastos.Tests.csproj" />
+  </Folder>
+</Solution>
