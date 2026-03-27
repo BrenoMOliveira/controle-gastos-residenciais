@@ -14,3 +14,6 @@ C:\Users\Breno\controle-gastos-residenciais\backend\src\ControleGastos.Applicati
 C:\Users\Breno\controle-gastos-residenciais\backend\src\ControleGastos.Application\obj\Debug\net9.0\refint\ControleGastos.Application.dll
 C:\Users\Breno\controle-gastos-residenciais\backend\src\ControleGastos.Application\obj\Debug\net9.0\ControleGastos.Application.pdb
 C:\Users\Breno\controle-gastos-residenciais\backend\src\ControleGastos.Application\obj\Debug\net9.0\ref\ControleGastos.Application.dll
+C:\Users\Breno\controle-gastos-residenciais\backend\.codex-build\api\ControleGastos.Application.deps.json
+C:\Users\Breno\controle-gastos-residenciais\backend\.codex-build\api\ControleGastos.Application.dll
+C:\Users\Breno\controle-gastos-residenciais\backend\.codex-build\api\ControleGastos.Application.pdb

@@ -10,3 +10,6 @@ C:\Users\Breno\controle-gastos-residenciais\backend\src\ControleGastos.Domain\ob
 C:\Users\Breno\controle-gastos-residenciais\backend\src\ControleGastos.Domain\obj\Debug\net9.0\refint\ControleGastos.Domain.dll
 C:\Users\Breno\controle-gastos-residenciais\backend\src\ControleGastos.Domain\obj\Debug\net9.0\ControleGastos.Domain.pdb
 C:\Users\Breno\controle-gastos-residenciais\backend\src\ControleGastos.Domain\obj\Debug\net9.0\ref\ControleGastos.Domain.dll
+C:\Users\Breno\controle-gastos-residenciais\backend\.codex-build\api\ControleGastos.Domain.deps.json
+C:\Users\Breno\controle-gastos-residenciais\backend\.codex-build\api\ControleGastos.Domain.dll
+C:\Users\Breno\controle-gastos-residenciais\backend\.codex-build\api\ControleGastos.Domain.pdb

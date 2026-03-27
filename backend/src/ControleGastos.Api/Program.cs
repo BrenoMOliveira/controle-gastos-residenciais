@@ -3,8 +3,8 @@ using ControleGastos.Application.Interfaces;
 using ControleGastos.Application.Services;
 using ControleGastos.Infrastructure.Persistence;
 using ControleGastos.Infrastructure.Repositories;
-using Microsoft.EntityFrameworkCore;
 using FluentValidation;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +22,8 @@ builder.Services.AddValidatorsFromAssemblyContaining<ControleGastos.Application.
 
 builder.Services.AddScoped<IPessoaService, PessoaService>();
 builder.Services.AddScoped<IPessoaRepository, PessoaRepository>();
+builder.Services.AddScoped<ICategoriaService, CategoriaService>();
+builder.Services.AddScoped<ICategoriaRepository, CategoriaRepository>();
 
 builder.Services.AddCors(options =>
 {

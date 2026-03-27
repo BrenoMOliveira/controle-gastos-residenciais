@@ -3,8 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\Breno\\controle-gastos-residenciais\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Breno\\controle-gastos-residenciais\\backend\\src\\ControleGastos.Api\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:backend\\src\\ControleGastos.Api\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Breno\\controle-gastos-residenciais\\backend\\src\\ControleGastos.Infrastructure\\Persistence\\AppDbContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:backend\\src\\ControleGastos.Infrastructure\\Persistence\\AppDbContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Breno\\controle-gastos-residenciais\\backend\\src\\ControleGastos.Infrastructure\\Persistence\\Seed\\CategoriaConfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:backend\\src\\ControleGastos.Infrastructure\\Persistence\\Seed\\CategoriaConfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -59,14 +63,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Breno\\controle-gastos-residenciais\\backend\\src\\ControleGastos.Api\\Program.cs",
-              "RelativeDocumentMoniker": "backend\\src\\ControleGastos.Api\\Program.cs",
-              "ToolTip": "C:\\Users\\Breno\\controle-gastos-residenciais\\backend\\src\\ControleGastos.Api\\Program.cs",
-              "RelativeToolTip": "backend\\src\\ControleGastos.Api\\Program.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAAAADIAAAABAAAAAAAAAA==",
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\Breno\\controle-gastos-residenciais\\backend\\src\\ControleGastos.Infrastructure\\Persistence\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "backend\\src\\ControleGastos.Infrastructure\\Persistence\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\Breno\\controle-gastos-residenciais\\backend\\src\\ControleGastos.Infrastructure\\Persistence\\AppDbContext.cs",
+              "RelativeToolTip": "backend\\src\\ControleGastos.Infrastructure\\Persistence\\AppDbContext.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAABMAAABUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-27T17:28:05.784Z",
+              "WhenOpened": "2026-03-27T20:34:33.707Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CategoriaConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\Breno\\controle-gastos-residenciais\\backend\\src\\ControleGastos.Infrastructure\\Persistence\\Seed\\CategoriaConfiguration.cs",
+              "RelativeDocumentMoniker": "backend\\src\\ControleGastos.Infrastructure\\Persistence\\Seed\\CategoriaConfiguration.cs",
+              "ToolTip": "C:\\Users\\Breno\\controle-gastos-residenciais\\backend\\src\\ControleGastos.Infrastructure\\Persistence\\Seed\\CategoriaConfiguration.cs",
+              "RelativeToolTip": "backend\\src\\ControleGastos.Infrastructure\\Persistence\\Seed\\CategoriaConfiguration.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAAACMAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-27T20:33:03.911Z",
               "EditorCaption": ""
             }
           ]

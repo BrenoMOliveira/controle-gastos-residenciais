@@ -153,3 +153,11 @@ C:\Users\Breno\controle-gastos-residenciais\backend\src\ControleGastos.Api\bin\D
 C:\Users\Breno\controle-gastos-residenciais\backend\src\ControleGastos.Api\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 C:\Users\Breno\controle-gastos-residenciais\backend\src\ControleGastos.Api\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 C:\Users\Breno\controle-gastos-residenciais\backend\src\ControleGastos.Api\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\Users\Breno\controle-gastos-residenciais\backend\.codex-build\api\appsettings.Development.json
+C:\Users\Breno\controle-gastos-residenciais\backend\.codex-build\api\appsettings.json
+C:\Users\Breno\controle-gastos-residenciais\backend\.codex-build\api\ControleGastos.Api.staticwebassets.endpoints.json
+C:\Users\Breno\controle-gastos-residenciais\backend\.codex-build\api\ControleGastos.Api.exe
+C:\Users\Breno\controle-gastos-residenciais\backend\.codex-build\api\ControleGastos.Api.deps.json
+C:\Users\Breno\controle-gastos-residenciais\backend\.codex-build\api\ControleGastos.Api.runtimeconfig.json
+C:\Users\Breno\controle-gastos-residenciais\backend\.codex-build\api\ControleGastos.Api.dll
+C:\Users\Breno\controle-gastos-residenciais\backend\.codex-build\api\ControleGastos.Api.pdb
