@@ -30,6 +30,8 @@ public class AppDbContext : DbContext
             entity.Property(x => x.Idade)
                 .IsRequired();
 
+            // Ao excluir uma pessoa, todas as transações vinculadas também devem ser removidas
+            // Essa configuração atende diretamente a regra do teste técnico
             entity.HasMany(x => x.Transacoes)
                 .WithOne(x => x.Pessoa)
                 .HasForeignKey(x => x.PessoaId)
@@ -72,6 +74,8 @@ public class AppDbContext : DbContext
                 .HasForeignKey(x => x.PessoaId)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            // Categoria não deve ser excluída automaticamente ao remover transações
+            // O relacionamento foi configurado como Restrict para evitar exclusões em cascata acidentais
             entity.HasOne(x => x.Categoria)
                 .WithMany(x => x.Transacoes)
                 .HasForeignKey(x => x.CategoriaId)

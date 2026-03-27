@@ -7,6 +7,8 @@ const links = [
   { to: "/relatorios", label: "Relatórios" },
 ];
 
+// Layout principal da aplicação
+// Mantém a navegação fixa à esquerda e a área de conteúdo à direita
 export default function AppLayout() {
   const location = useLocation();
 
