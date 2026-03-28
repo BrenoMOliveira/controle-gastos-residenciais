@@ -5,8 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace ControleGastos.Api.Controllers;
 
 /// <summary>
-/// Endpoint responsavel pelo gerenciamento de categorias:
-/// criacao e listagem
+/// Endpoint responsável pelo gerenciamento de categorias:
+/// criação e listagem
 /// </summary>
 [ApiController]
 [Route("api/[controller]")]

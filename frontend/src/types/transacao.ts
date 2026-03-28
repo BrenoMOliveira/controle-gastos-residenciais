@@ -1,8 +1,10 @@
+export type TipoTransacao = 1 | 2;
+
 export interface Transacao {
   id: string;
   descricao: string;
   valor: number;
-  tipo: number;
+  tipo: TipoTransacao;
   pessoaId: string;
   categoriaId: string;
 }
@@ -10,7 +12,7 @@ export interface Transacao {
 export interface CriarTransacaoRequest {
   descricao: string;
   valor: number;
-  tipo: number;
+  tipo: TipoTransacao;
   pessoaId: string;
   categoriaId: string;
 }

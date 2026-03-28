@@ -151,7 +151,7 @@ export default function CategoriasPage() {
             />
           </div>
 
-          <div className="w-56">
+          <div className="w-60">
             <label className="mb-1.5 block text-sm font-medium text-gray-700">Finalidade</label>
             <select
               name="finalidade"

@@ -7,7 +7,7 @@ using FluentValidation;
 namespace ControleGastos.Application.Services;
 
 /// <summary>
-/// Servico responsavel pelos casos de uso de categorias
+/// Servico responsável pelos casos de uso de categorias
 /// </summary>
 public class CategoriaService : ICategoriaService
 {

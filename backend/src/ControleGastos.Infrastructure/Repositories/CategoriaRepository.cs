@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 namespace ControleGastos.Infrastructure.Repositories;
 
 /// <summary>
-/// Implementacao concreta de persistencia de categorias utilizando Entity Framework Core
+/// Implementação concreta de persistência de categorias utilizando Entity Framework Core
 /// </summary>
 public class CategoriaRepository : ICategoriaRepository
 {
@@ -22,6 +22,12 @@ public class CategoriaRepository : ICategoriaRepository
         return await _context.Categorias
             .AsNoTracking()
             .ToListAsync();
+    }
+
+    public async Task<Categoria?> ObterPorIdAsync(Guid id)
+    {
+        return await _context.Categorias
+            .FirstOrDefaultAsync(x => x.Id == id);
     }
 
     public async Task AdicionarAsync(Categoria categoria)

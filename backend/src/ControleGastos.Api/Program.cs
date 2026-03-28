@@ -12,18 +12,20 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddOpenApi();
 
-// SQLite foi escolhido por atender o requisito de persistência após reinicialização
-// com baixa complexidade de setup para o teste técnico
+// SQLite foi escolhido por atender o requisito de persistÃªncia apÃ³s reinicializaÃ§Ã£o
+// com baixa complexidade de setup para o teste tÃ©cnico
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Os validators são registrados por assembly para evitar configuração manual de cada classe de validação
+// Os validators sÃ£o registrados por assembly para evitar configuraÃ§Ã£o manual de cada classe de validaÃ§Ã£o
 builder.Services.AddValidatorsFromAssemblyContaining<ControleGastos.Application.Validators.Pessoas.CriarPessoaRequestValidator>();
 
 builder.Services.AddScoped<IPessoaService, PessoaService>();
 builder.Services.AddScoped<IPessoaRepository, PessoaRepository>();
 builder.Services.AddScoped<ICategoriaService, CategoriaService>();
 builder.Services.AddScoped<ICategoriaRepository, CategoriaRepository>();
+builder.Services.AddScoped<ITransacaoService, TransacaoService>();
+builder.Services.AddScoped<ITransacaoRepository, TransacaoRepository>();
 
 builder.Services.AddCors(options =>
 {
@@ -39,7 +41,7 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-// O middleware global deve ser executado cedo no pipeline para capturar exceções das demais camadas
+// O middleware global deve ser executado cedo no pipeline para capturar exceÃ§Ãµes das demais camadas
 app.UseGlobalExceptionHandling();
 
 if (app.Environment.IsDevelopment())

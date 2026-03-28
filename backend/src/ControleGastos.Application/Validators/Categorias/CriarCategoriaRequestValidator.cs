@@ -9,11 +9,11 @@ public class CriarCategoriaRequestValidator : AbstractValidator<CriarCategoriaRe
     public CriarCategoriaRequestValidator()
     {
         RuleFor(x => x.Descricao)
-            .NotEmpty().WithMessage("A descricao e obrigatoria.")
-            .MaximumLength(400).WithMessage("A descricao deve ter no maximo 400 caracteres.");
+            .NotEmpty().WithMessage("A descrição é obrigatória.")
+            .MaximumLength(400).WithMessage("A descrição deve ter no máximo 400 caracteres.");
 
         RuleFor(x => x.Finalidade)
-            .NotNull().WithMessage("A finalidade e obrigatoria.")
+            .NotNull().WithMessage("A finalidade é obrigatória.")
             .Must(finalidade => 
                   finalidade == (int)FinalidadeCategoria.Despesa ||
                   finalidade == (int)FinalidadeCategoria.Receita ||
