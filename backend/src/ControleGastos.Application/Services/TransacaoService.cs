@@ -8,7 +8,7 @@ using FluentValidation;
 namespace ControleGastos.Application.Services;
 
 /// <summary>
-/// ServiÁo respons·vel pelos casos de uso de transaÁıes
+/// Servi√ßo respons√°vel pelos casos de uso de transa√ß√µes.
 /// </summary>
 public class TransacaoService : ITransacaoService
 {
@@ -44,29 +44,32 @@ public class TransacaoService : ITransacaoService
     {
         await _criarValidator.ValidateAndThrowAsync(request);
 
-        var pessoa = await _pessoaRepository.ObterPorIdAsync(request.PessoaId!.Value);
+        var pessoaId = request.PessoaId ?? Guid.Empty;
+        var categoriaId = request.CategoriaId ?? Guid.Empty;
+        var tipo = (TipoTransacao)(request.Tipo ?? 0);
+        var valor = request.Valor ?? 0m;
+
+        var pessoa = await _pessoaRepository.ObterPorIdAsync(pessoaId);
 
         if (pessoa is null)
-            throw new NotFoundException("Pessoa n„o encontrada.");
+            throw new NotFoundException("Pessoa n√£o encontrada.");
 
-        var categoria = await _categoriaRepository.ObterPorIdAsync(request.CategoriaId!.Value);
+        var categoria = await _categoriaRepository.ObterPorIdAsync(categoriaId);
 
         if (categoria is null)
-            throw new NotFoundException("Categoria n„o encontrada.");
-
-        var tipo = (TipoTransacao)request.Tipo!.Value;
+            throw new NotFoundException("Categoria n√£o encontrada.");
 
         if (pessoa.Idade < 18 && tipo == TipoTransacao.Receita)
-            throw new BusinessRuleException("Para menores de idade, apenas transaÁıes do tipo despesa s„o permitidas.");
+            throw new BusinessRuleException("Para menores de idade, apenas transa√ß√µes do tipo despesa s√£o permitidas.");
 
         if (!CategoriaCompativelComTipo(categoria.Finalidade, tipo))
-            throw new BusinessRuleException("A categoria selecionada n„o È compatÌvel com o tipo da transaÁ„o.");
+            throw new BusinessRuleException("A categoria selecionada n√£o √© compat√≠vel com o tipo da transa√ß√£o.");
 
         var transacao = new Transacao
         {
             Id = Guid.NewGuid(),
             Descricao = request.Descricao.Trim(),
-            Valor = request.Valor.Value,
+            Valor = valor,
             Tipo = tipo,
             PessoaId = pessoa.Id,
             CategoriaId = categoria.Id

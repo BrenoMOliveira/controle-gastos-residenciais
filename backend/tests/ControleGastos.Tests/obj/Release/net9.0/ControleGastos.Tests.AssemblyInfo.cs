@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ControleGastos.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+46250103320d04156851345b0d02145350b71a3d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+12e16b300b91c0d3e8472e3b74cdba350d81ecc7")]
 [assembly: System.Reflection.AssemblyProductAttribute("ControleGastos.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ControleGastos.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

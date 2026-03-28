@@ -21,17 +21,19 @@ public class TransacaoServiceTests
     {
         var service = CriarService();
         var request = CriarRequest(tipo: (int)TipoTransacao.Receita);
+        var pessoaId = request.PessoaId.GetValueOrDefault();
+        var categoriaId = request.CategoriaId.GetValueOrDefault();
 
         _pessoaRepositoryMock
-            .Setup(x => x.ObterPorIdAsync(request.PessoaId!.Value))
-            .ReturnsAsync(new Pessoa { Id = request.PessoaId.Value, Nome = "Ana", Idade = 17 });
+            .Setup(x => x.ObterPorIdAsync(pessoaId))
+            .ReturnsAsync(new Pessoa { Id = pessoaId, Nome = "Ana", Idade = 17 });
 
         _categoriaRepositoryMock
-            .Setup(x => x.ObterPorIdAsync(request.CategoriaId!.Value))
+            .Setup(x => x.ObterPorIdAsync(categoriaId))
             .ReturnsAsync(new Categoria
             {
-                Id = request.CategoriaId.Value,
-                Descricao = "Salário",
+                Id = categoriaId,
+                Descricao = "SalÃ¡rio",
                 Finalidade = FinalidadeCategoria.Receita
             });
 
@@ -39,7 +41,7 @@ public class TransacaoServiceTests
 
         await act.Should()
             .ThrowAsync<BusinessRuleException>()
-            .WithMessage("Para menores de idade, apenas transações do tipo despesa são permitidas.");
+            .WithMessage("Para menores de idade, apenas transaÃ§Ãµes do tipo despesa sÃ£o permitidas.");
     }
 
     [Fact]
@@ -47,17 +49,19 @@ public class TransacaoServiceTests
     {
         var service = CriarService();
         var request = CriarRequest(tipo: (int)TipoTransacao.Despesa);
+        var pessoaId = request.PessoaId.GetValueOrDefault();
+        var categoriaId = request.CategoriaId.GetValueOrDefault();
 
         _pessoaRepositoryMock
-            .Setup(x => x.ObterPorIdAsync(request.PessoaId!.Value))
-            .ReturnsAsync(new Pessoa { Id = request.PessoaId.Value, Nome = "Carlos", Idade = 30 });
+            .Setup(x => x.ObterPorIdAsync(pessoaId))
+            .ReturnsAsync(new Pessoa { Id = pessoaId, Nome = "Carlos", Idade = 30 });
 
         _categoriaRepositoryMock
-            .Setup(x => x.ObterPorIdAsync(request.CategoriaId!.Value))
+            .Setup(x => x.ObterPorIdAsync(categoriaId))
             .ReturnsAsync(new Categoria
             {
-                Id = request.CategoriaId.Value,
-                Descricao = "Salário",
+                Id = categoriaId,
+                Descricao = "SalÃ¡rio",
                 Finalidade = FinalidadeCategoria.Receita
             });
 
@@ -65,7 +69,7 @@ public class TransacaoServiceTests
 
         await act.Should()
             .ThrowAsync<BusinessRuleException>()
-            .WithMessage("A categoria selecionada não é compatível com o tipo da transação.");
+            .WithMessage("A categoria selecionada nÃ£o Ã© compatÃ­vel com o tipo da transaÃ§Ã£o.");
     }
 
     [Fact]
@@ -73,17 +77,19 @@ public class TransacaoServiceTests
     {
         var service = CriarService();
         var request = CriarRequest(tipo: (int)TipoTransacao.Despesa, descricao: "  Mercado  ");
+        var pessoaId = request.PessoaId.GetValueOrDefault();
+        var categoriaId = request.CategoriaId.GetValueOrDefault();
         Transacao? transacaoAdicionada = null;
 
         _pessoaRepositoryMock
-            .Setup(x => x.ObterPorIdAsync(request.PessoaId!.Value))
-            .ReturnsAsync(new Pessoa { Id = request.PessoaId.Value, Nome = "Marina", Idade = 24 });
+            .Setup(x => x.ObterPorIdAsync(pessoaId))
+            .ReturnsAsync(new Pessoa { Id = pessoaId, Nome = "Marina", Idade = 24 });
 
         _categoriaRepositoryMock
-            .Setup(x => x.ObterPorIdAsync(request.CategoriaId!.Value))
+            .Setup(x => x.ObterPorIdAsync(categoriaId))
             .ReturnsAsync(new Categoria
             {
-                Id = request.CategoriaId.Value,
+                Id = categoriaId,
                 Descricao = "Padaria",
                 Finalidade = FinalidadeCategoria.Despesa
             });
@@ -98,8 +104,8 @@ public class TransacaoServiceTests
         response.Descricao.Should().Be("Mercado");
         response.Valor.Should().Be(request.Valor!.Value);
         response.Tipo.Should().Be((int)TipoTransacao.Despesa);
-        response.PessoaId.Should().Be(request.PessoaId.Value);
-        response.CategoriaId.Should().Be(request.CategoriaId.Value);
+        response.PessoaId.Should().Be(pessoaId);
+        response.CategoriaId.Should().Be(categoriaId);
 
         transacaoAdicionada.Should().NotBeNull();
         transacaoAdicionada!.Id.Should().NotBeEmpty();
@@ -118,7 +124,7 @@ public class TransacaoServiceTests
             new CriarTransacaoRequestValidator());
     }
 
-    private static CriarTransacaoRequest CriarRequest(int tipo, string descricao = "Compra do mês")
+    private static CriarTransacaoRequest CriarRequest(int tipo, string descricao = "Compra do mÃªs")
     {
         return new CriarTransacaoRequest
         {
