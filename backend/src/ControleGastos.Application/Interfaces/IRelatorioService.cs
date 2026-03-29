@@ -8,4 +8,5 @@ namespace ControleGastos.Application.Interfaces;
 public interface IRelatorioService
 {
     Task<TotaisPorPessoaResponse> ConsultarTotaisPorPessoaAsync();
+    Task<TotaisPorCategoriaResponse> ConsultarTotaisPorCategoriaAsync();
 }

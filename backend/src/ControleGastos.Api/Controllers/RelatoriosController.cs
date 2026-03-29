@@ -24,4 +24,11 @@ public class RelatoriosController : ControllerBase
         var response = await _relatorioService.ConsultarTotaisPorPessoaAsync();
         return Ok(response);
     }
+
+    [HttpGet("totais-por-categoria")]
+    public async Task<ActionResult<TotaisPorCategoriaResponse>> GetTotaisPorCategoria()
+    {
+        var response = await _relatorioService.ConsultarTotaisPorCategoriaAsync();
+        return Ok(response);
+    }
 }

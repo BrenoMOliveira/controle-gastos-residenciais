@@ -6,6 +6,14 @@ export interface RelatorioPessoa {
   saldo: number;
 }
 
+export interface RelatorioCategoria {
+  categoriaId: string;
+  descricaoCategoria: string;
+  totalReceitas: number;
+  totalDespesas: number;
+  saldo: number;
+}
+
 export interface TotaisGeraisRelatorio {
   totalReceitas: number;
   totalDespesas: number;
@@ -17,10 +25,7 @@ export interface RelatorioTotaisPorPessoa {
   totaisGerais: TotaisGeraisRelatorio;
 }
 
-export interface RelatorioCategoria {
-  categoriaId: string;
-  descricaoCategoria: string;
-  totalReceitas: number;
-  totalDespesas: number;
-  saldo: number;
+export interface RelatorioTotaisPorCategoria {
+  categorias: RelatorioCategoria[];
+  totaisGerais: TotaisGeraisRelatorio;
 }

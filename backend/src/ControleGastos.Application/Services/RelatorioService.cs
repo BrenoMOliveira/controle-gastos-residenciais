@@ -10,13 +10,16 @@ namespace ControleGastos.Application.Services;
 public class RelatorioService : IRelatorioService
 {
     private readonly IPessoaRepository _pessoaRepository;
+    private readonly ICategoriaRepository _categoriaRepository;
     private readonly ITransacaoRepository _transacaoRepository;
 
     public RelatorioService(
         IPessoaRepository pessoaRepository,
+        ICategoriaRepository categoriaRepository,
         ITransacaoRepository transacaoRepository)
     {
         _pessoaRepository = pessoaRepository;
+        _categoriaRepository = categoriaRepository;
         _transacaoRepository = transacaoRepository;
     }
 
@@ -65,12 +68,70 @@ public class RelatorioService : IRelatorioService
         return new TotaisPorPessoaResponse
         {
             Pessoas = pessoasResponse,
-            TotaisGerais = new TotaisGeraisResponse
+            TotaisGerais = CriarTotaisGerais(
+                pessoasResponse.Sum(item => item.TotalReceitas),
+                pessoasResponse.Sum(item => item.TotalDespesas))
+        };
+    }
+
+    public async Task<TotaisPorCategoriaResponse> ConsultarTotaisPorCategoriaAsync()
+    {
+        var categorias = await _categoriaRepository.ListarAsync();
+        var transacoes = await _transacaoRepository.ListarAsync();
+
+        var totaisPorCategoriaId = transacoes
+            .GroupBy(transacao => transacao.CategoriaId)
+            .ToDictionary(
+                grupo => grupo.Key,
+                grupo => new
+                {
+                    TotalReceitas = grupo
+                        .Where(transacao => transacao.Tipo == TipoTransacao.Receita)
+                        .Sum(transacao => transacao.Valor),
+                    TotalDespesas = grupo
+                        .Where(transacao => transacao.Tipo == TipoTransacao.Despesa)
+                        .Sum(transacao => transacao.Valor)
+                });
+
+        var categoriasResponse = categorias
+            .OrderBy(categoria => categoria.Descricao)
+            .Select(categoria =>
             {
-                TotalReceitas = pessoasResponse.Sum(item => item.TotalReceitas),
-                TotalDespesas = pessoasResponse.Sum(item => item.TotalDespesas),
-                SaldoLiquido = pessoasResponse.Sum(item => item.Saldo)
-            }
+                var totaisCategoria = totaisPorCategoriaId.GetValueOrDefault(
+                    categoria.Id,
+                    new
+                    {
+                        TotalReceitas = 0m,
+                        TotalDespesas = 0m
+                    });
+
+                return new RelatorioCategoriaResponse
+                {
+                    CategoriaId = categoria.Id,
+                    DescricaoCategoria = categoria.Descricao,
+                    TotalReceitas = totaisCategoria.TotalReceitas,
+                    TotalDespesas = totaisCategoria.TotalDespesas,
+                    Saldo = totaisCategoria.TotalReceitas - totaisCategoria.TotalDespesas
+                };
+            })
+            .ToList();
+
+        return new TotaisPorCategoriaResponse
+        {
+            Categorias = categoriasResponse,
+            TotaisGerais = CriarTotaisGerais(
+                categoriasResponse.Sum(item => item.TotalReceitas),
+                categoriasResponse.Sum(item => item.TotalDespesas))
+        };
+    }
+
+    private static TotaisGeraisResponse CriarTotaisGerais(decimal totalReceitas, decimal totalDespesas)
+    {
+        return new TotaisGeraisResponse
+        {
+            TotalReceitas = totalReceitas,
+            TotalDespesas = totalDespesas,
+            SaldoLiquido = totalReceitas - totalDespesas
         };
     }
 }
