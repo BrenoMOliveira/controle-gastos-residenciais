@@ -7,9 +7,9 @@ using FluentValidation;
 namespace ControleGastos.Application.Services;
 
 /// <summary>
-/// ServiÁo respons·vel pelos casos de uso de pessoas
-/// A camada de aplicaÁ„o executa a regra de negÛcio e passa o acesso a dados ao repositÛrio,
-/// mantendo a infraestrutura desacoplada da lÛgica da aplicaÁ„o
+/// Servi√ßo respons√°vel pelos casos de uso de pessoas
+/// A camada de aplica√ß√£o executa as regras de neg√≥cio e delega a persist√™ncia ao reposit√≥rio,
+/// mantendo a infraestrutura desacoplada das decis√µes do dom√≠nio
 /// </summary>
 public class PessoaService : IPessoaService
 {
@@ -17,7 +17,8 @@ public class PessoaService : IPessoaService
     private readonly IValidator<CriarPessoaRequest> _criarValidator;
     private readonly IValidator<AtualizarPessoaRequest> _atualizarValidator;
 
-    public PessoaService(IPessoaRepository pessoaRepository,
+    public PessoaService(
+        IPessoaRepository pessoaRepository,
         IValidator<CriarPessoaRequest> criarValidator,
         IValidator<AtualizarPessoaRequest> atualizarValidator)
     {
@@ -40,19 +41,20 @@ public class PessoaService : IPessoaService
     {
         var pessoa = await _pessoaRepository.ObterPorIdAsync(id);
 
-        // A ausÍncia da pessoa È tratada como erro de domÌnio da operaÁ„o e n„o apenas como um null
+        // A aus√™ncia da pessoa √© tratada como erro de dom√≠nio da opera√ß√£o e n√£o apenas como um valor nulo
         if (pessoa is null)
-            throw new NotFoundException("Pessoa n„o encontrada.");
+            throw new NotFoundException("Pessoa n√£o encontrada.");
 
         return MapearParaResponse(pessoa);
     }
 
     public async Task<PessoaResponse> CriarAsync(CriarPessoaRequest request)
     {
-        // A validaÁ„o È executada na camada de aplicaÁ„o para garantir consistÍncia independentemente de quem consuma a API
+        // A valida√ß√£o √© executada na camada de aplica√ß√£o para garantir consist√™ncia,
+        // independentemente de quem consuma a API
         await _criarValidator.ValidateAndThrowAsync(request);
 
-        // O Trim evita cadastro com espaÁos em branco desnecess·rios no inÌcio ou no fim do nome
+        // O Trim evita cadastros com espa√ßos excedentes no in√≠cio ou no fim do nome
         var pessoa = new Pessoa
         {
             Id = Guid.NewGuid(),
@@ -73,10 +75,25 @@ public class PessoaService : IPessoaService
         var pessoa = await _pessoaRepository.ObterPorIdAsync(id);
 
         if (pessoa is null)
-            throw new NotFoundException("Pessoa n„o encontrada.");
+            throw new NotFoundException("Pessoa n√£o encontrada.");
+
+        var novaIdade = request.Idade!.Value;
+
+        /*
+         * Quando a pessoa j√° possui receitas registradas, impedir a redu√ß√£o da idade para menor de 18 anos
+         * preserva a integridade hist√≥rica da base. Sem essa prote√ß√£o, o cadastro ficaria incompat√≠vel com
+         * a regra central do dom√≠nio, que n√£o permite menores de idade com transa√ß√µes do tipo receita
+         */
+        if (novaIdade < 18)
+        {
+            var possuiReceitasAtivas = await _pessoaRepository.PossuiReceitasAsync(id);
+
+            if (possuiReceitasAtivas)
+                throw new BusinessRuleException("N√£o √© poss√≠vel reduzir a idade para menor de 18 anos, pois existem transa√ß√µes de receita ativas para esta pessoa.");
+        }
 
         pessoa.Nome = request.Nome.Trim();
-        pessoa.Idade = request.Idade!.Value;
+        pessoa.Idade = novaIdade;
 
         await _pessoaRepository.AtualizarAsync(pessoa);
         await _pessoaRepository.SalvarAlteracoesAsync();
@@ -89,9 +106,10 @@ public class PessoaService : IPessoaService
         var pessoa = await _pessoaRepository.ObterPorIdAsync(id);
 
         if (pessoa is null)
-            throw new NotFoundException("Pessoa n„o encontrada.");
+            throw new NotFoundException("Pessoa n√£o encontrada.");
 
-        // A exclus„o da pessoa dispara a remoÁ„o das transaÁıes vinculadas via cascade delete conforme configurado no AppDbContext
+        // A exclus√£o da pessoa dispara a remo√ß√£o das transa√ß√µes vinculadas via cascade delete,
+        // conforme configurado no AppDbContext
         await _pessoaRepository.RemoverAsync(pessoa);
         await _pessoaRepository.SalvarAlteracoesAsync();
     }

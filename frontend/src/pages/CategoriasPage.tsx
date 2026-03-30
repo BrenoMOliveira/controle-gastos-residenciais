@@ -44,10 +44,12 @@ export default function CategoriasPage() {
   }
 
   useEffect(() => {
+    // Busca as categorias ao abrir a página para sincronizar a listagem com o estado atual do back-end
     carregarCategorias();
   }, []);
 
   useEffect(() => {
+    // Limpa a mensagem transitória após a confirmação visual do cadastro realizado com sucesso
     if (!mensagem) return;
     const timer = setTimeout(() => setMensagem(""), 3000);
     return () => clearTimeout(timer);
@@ -107,6 +109,7 @@ export default function CategoriasPage() {
     }
   }
 
+  // Mantém a filtragem em memória para alternar rapidamente entre finalidades sem nova chamada à API
   const categoriasFiltradas = categorias.filter((cat) => {
     if (filtroFinalidade === null) return true;
     return cat.finalidade === filtroFinalidade;
@@ -198,6 +201,7 @@ export default function CategoriasPage() {
         <div className="mb-4 flex flex-col items-start justify-between gap-4 shrink-0 sm:flex-row sm:items-center">
           <h3 className="text-lg font-semibold text-[#00396A]">Lista de categorias</h3>
 
+          {/* Os botões funcionam como abas de filtro para destacar apenas a finalidade desejada na tabela */}
           <div className="flex items-center rounded-lg bg-gray-100 p-1">
             <button
               onClick={() => setFiltroFinalidade(null)}

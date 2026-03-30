@@ -8,6 +8,7 @@ namespace ControleGastos.Application.Services;
 
 /// <summary>
 /// Servico responsável pelos casos de uso de categorias
+/// Isola as regras de negócio e validações de entrada antes de delegar a persistência ao repositório
 /// </summary>
 public class CategoriaService : ICategoriaService
 {
@@ -34,6 +35,7 @@ public class CategoriaService : ICategoriaService
 
     public async Task<CategoriaResponse> CriarAsync(CriarCategoriaRequest request)
     {
+        // A validação impede processamento desnecessário e idas ao banco de dados caso o request inicial já seja inválido
         await _criarValidator.ValidateAndThrowAsync(request);
 
         var categoria = new Categoria

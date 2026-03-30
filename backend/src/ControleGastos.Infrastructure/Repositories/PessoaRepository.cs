@@ -1,12 +1,13 @@
 using ControleGastos.Application.Interfaces;
 using ControleGastos.Domain.Entities;
+using ControleGastos.Domain.Enums;
 using ControleGastos.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
 namespace ControleGastos.Infrastructure.Repositories;
 
 /// <summary>
-/// Implementação concreta de persistência de pessoas utilizando Entity Framework Core
+/// ImplementaÃ§Ã£o concreta de persistÃªncia de pessoas utilizando Entity Framework Core
 /// </summary>
 public class PessoaRepository : IPessoaRepository
 {
@@ -19,7 +20,7 @@ public class PessoaRepository : IPessoaRepository
 
     public async Task<List<Pessoa>> ListarAsync()
     {
-        // AsNoTracking melhora a performance de leitura/listagem quando não há necessidade de rastrear alterações
+        // AsNoTracking melhora a performance de leitura/listagem quando nÃ£o hÃ¡ necessidade de rastrear alteraÃ§Ãµes
         return await _context.Pessoas
             .AsNoTracking()
             .ToListAsync();
@@ -29,6 +30,15 @@ public class PessoaRepository : IPessoaRepository
     {
         return await _context.Pessoas
             .FirstOrDefaultAsync(x => x.Id == id);
+    }
+
+    public async Task<bool> PossuiReceitasAsync(Guid pessoaId)
+    {
+        return await _context.Transacoes
+            .AsNoTracking()
+            .AnyAsync(transacao =>
+                transacao.PessoaId == pessoaId &&
+                transacao.Tipo == TipoTransacao.Receita);
     }
 
     public async Task AdicionarAsync(Pessoa pessoa)

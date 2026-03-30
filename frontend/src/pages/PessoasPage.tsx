@@ -40,10 +40,12 @@ export default function PessoasPage() {
   }
 
   useEffect(() => {
+    // Carrega a lista inicial para que a tela abra sincronizada com os cadastros persistidos no back-end
     carregarPessoas();
   }, []);
 
   useEffect(() => {
+    // Remove automaticamente a mensagem de sucesso após 3 segundos para não poluir a interface.
     if (mensagem) {
       const timer = setTimeout(() => {
         setMensagem("");
@@ -122,6 +124,7 @@ export default function PessoasPage() {
   }
 
   function handleEditar(pessoa: Pessoa) {
+    // Reaproveita o formulário principal para carregar os dados da pessoa selecionada para edição.
     setEditandoId(pessoa.id);
     setForm({
       nome: pessoa.nome,
@@ -163,7 +166,6 @@ export default function PessoasPage() {
 
 return (
     <section className="flex h-full flex-col gap-6">
-      
       <div className="shrink-0">
         <h2 className="text-3xl font-bold text-[#00396A]">Pessoas</h2>
         <p className="mt-1 text-gray-500">

@@ -8,7 +8,9 @@ using FluentValidation;
 namespace ControleGastos.Application.Services;
 
 /// <summary>
-/// Serviço responsável pelos casos de uso de transações.
+/// Serviço responsável pelos casos de uso de transações
+/// Centraliza as lógicas de negócio e as validações cruzadas (Pessoa x Categoria x Transação) 
+/// para garantir a consistência do domínio
 /// </summary>
 public class TransacaoService : ITransacaoService
 {
@@ -59,9 +61,11 @@ public class TransacaoService : ITransacaoService
         if (categoria is null)
             throw new NotFoundException("Categoria não encontrada.");
 
+        // REGRA DE NEGÓCIO: Menores de 18 anos são restritos apenas a registro de despesas
         if (pessoa.Idade < 18 && tipo == TipoTransacao.Receita)
             throw new BusinessRuleException("Para menores de idade, apenas transações do tipo despesa são permitidas.");
 
+        // REGRA DE NEGÓCIO: A transação deve respeitar o escopo da categoria (receita, despesa ou ambas)
         if (!CategoriaCompativelComTipo(categoria.Finalidade, tipo))
             throw new BusinessRuleException("A categoria selecionada não é compatível com o tipo da transação.");
 

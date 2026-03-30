@@ -61,20 +61,25 @@ export default function RelatoriosPage() {
   }
 
   useEffect(() => {
+    // Busca os relatórios de pessoas e categorias no carregamento inicial para abastecer as duas abas
     carregarRelatorios();
   }, []);
 
+  // Centraliza os totais exibidos nos cards conforme a aba ativa, evitando duplicação de renderização
   const totaisAtivos: TotaisGeraisRelatorio =
     abaAtiva === "pessoas" ? relatorioPessoas.totaisGerais : relatorioCategorias.totaisGerais;
 
+  // Ajusta dinamicamente o título da tabela para refletir o contexto selecionado pelo usuário
   const tituloTabela =
     abaAtiva === "pessoas" ? "Totais por pessoa" : "Totais por categoria";
 
+  // Identifica se a aba atual possui registros para decidir entre tabela preenchida ou estado vazio
   const semDadosAtivos =
     abaAtiva === "pessoas"
       ? relatorioPessoas.pessoas.length === 0
       : relatorioCategorias.categorias.length === 0;
 
+  // Mantém a mensagem de ausência de dados alinhada com a aba ativa da consulta
   const mensagemVazia =
     abaAtiva === "pessoas"
       ? "Nenhuma pessoa cadastrada para exibir no relatório."
@@ -90,6 +95,7 @@ export default function RelatoriosPage() {
       </div>
 
       <div className="shrink-0">
+        {/* As abas alternam entre duas visões do mesmo módulo sem sair da página de relatórios */}
         <div className="inline-flex rounded-2xl border border-gray-200 bg-white p-1 shadow-sm">
           <button
             type="button"

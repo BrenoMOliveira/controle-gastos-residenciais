@@ -5,7 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace ControleGastos.Api.Controllers;
 
 /// <summary>
-/// Endpoint responsável pelas consultas de relatórios.
+/// Endpoint responsável pelas consultas de relatórios:
+/// por pessoa e por categoria
 /// </summary>
 [ApiController]
 [Route("api/[controller]")]

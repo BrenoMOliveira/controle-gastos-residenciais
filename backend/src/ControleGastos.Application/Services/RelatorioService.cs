@@ -5,7 +5,7 @@ using ControleGastos.Domain.Enums;
 namespace ControleGastos.Application.Services;
 
 /// <summary>
-/// Serviço responsável pelos casos de uso de relatórios.
+/// Serviço responsável pelos casos de uso de relatórios
 /// </summary>
 public class RelatorioService : IRelatorioService
 {
@@ -28,6 +28,8 @@ public class RelatorioService : IRelatorioService
         var pessoas = await _pessoaRepository.ListarAsync();
         var transacoes = await _transacaoRepository.ListarAsync();
 
+        // O agrupamento em memória por PessoaId evita múltiplas buscas repetidas por pessoa
+        // e deixa os cálculos de receita e despesa centralizados em uma única estrutura
         var totaisPorPessoaId = transacoes
             .GroupBy(transacao => transacao.PessoaId)
             .ToDictionary(
@@ -42,6 +44,8 @@ public class RelatorioService : IRelatorioService
                         .Sum(transacao => transacao.Valor)
                 });
 
+        // O dicionário permite consultar os totais já agregados com acesso rápido,
+        // inclusive tratando pessoas sem transações com valores zerados de forma explícita
         var pessoasResponse = pessoas
             .OrderBy(pessoa => pessoa.Nome)
             .Select(pessoa =>
@@ -79,6 +83,8 @@ public class RelatorioService : IRelatorioService
         var categorias = await _categoriaRepository.ListarAsync();
         var transacoes = await _transacaoRepository.ListarAsync();
 
+        // O agrupamento em memória por CategoriaId segue a mesma estratégia do relatório por pessoa,
+        // consolidando os cálculos em uma única passagem para simplificar a leitura e o desempenho
         var totaisPorCategoriaId = transacoes
             .GroupBy(transacao => transacao.CategoriaId)
             .ToDictionary(
@@ -93,6 +99,8 @@ public class RelatorioService : IRelatorioService
                         .Sum(transacao => transacao.Valor)
                 });
 
+        // O uso do dicionário evita recalcular totais por categoria durante a projeção final
+        // e garante o retorno de categorias sem movimentação com totais zerados
         var categoriasResponse = categorias
             .OrderBy(categoria => categoria.Descricao)
             .Select(categoria =>

@@ -3,13 +3,19 @@ using ControleGastos.Domain.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace ControleGastos.Infrastructure.Persistence.Seed; 
+namespace ControleGastos.Infrastructure.Persistence.Seed;
 
+/// <summary>
+/// Configuração de Seed para as categoria
+/// Garante que o banco de dados já inicie com categorias básicas pré-cadastradas
+/// após a execução das migrations
+/// </summary>
 public class CategoriaConfiguration : IEntityTypeConfiguration<Categoria>
 {
     public void Configure(EntityTypeBuilder<Categoria> builder)
     {
-        
+        // Usei os GUIDs estáticos e previsíveis em vez de Guid.NewGuid() para garantir que o Entity Framework Core consiga rastrear a chave primária
+        // e saiba que esses registros já existem, evitando duplicidades ou erros de inserção a cada nova migration
         builder.HasData(
             new Categoria
             {

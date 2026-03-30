@@ -51,6 +51,7 @@ export default function TransacoesPage() {
   const pessoaSelecionada = pessoas.find((pessoa) => pessoa.id === form.pessoaId);
   const pessoaMenorDeIdade = Boolean(pessoaSelecionada && pessoaSelecionada.idade < 18);
 
+  // Filtra em memória apenas as categorias compatíveis com o tipo selecionado para evitar combinações inválidas
   const categoriasDisponiveis = categorias.filter((categoria) => {
     if (form.tipo === "") return true;
     return categoriaCompativel(categoria.finalidade, Number(form.tipo) as TipoTransacao);
@@ -78,10 +79,12 @@ export default function TransacoesPage() {
   }
 
   useEffect(() => {
+    // Carrega transações, pessoas e categorias em paralelo para montar toda a tela de uma só vez
     carregarDados();
   }, []);
 
   useEffect(() => {
+    // Oculta a confirmação de sucesso após um intervalo curto para manter a interface mais limpa
     if (!mensagem) return;
 
     const timer = setTimeout(() => setMensagem(""), 3000);
@@ -89,12 +92,14 @@ export default function TransacoesPage() {
   }, [mensagem]);
 
   useEffect(() => {
+    // Ajusta automaticamente o tipo para despesa quando a pessoa selecionada é menor de idade
     if (pessoaMenorDeIdade && form.tipo === "2") {
       setForm((prev) => ({ ...prev, tipo: "1" }));
     }
   }, [pessoaMenorDeIdade, form.tipo]);
 
   useEffect(() => {
+    // Limpa a categoria escolhida quando ela deixa de ser compatível com o tipo atual da transação
     if (!form.categoriaId) return;
 
     const categoriaSelecionada = categorias.find((categoria) => categoria.id === form.categoriaId);
@@ -301,6 +306,7 @@ export default function TransacoesPage() {
               className="w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-gray-900 outline-none transition focus:border-[#0872C9] focus:ring-1 focus:ring-[#0872C9] disabled:bg-gray-100"
             >
               <option value="">Selecione o tipo</option>
+              {/* Para menores de idade, a interface já restringe a seleção ao único tipo permitido (despesa) pela regra de negócio */}
               {tiposTransacao
                 .filter((tipo) => !pessoaMenorDeIdade || tipo.value === 1)
                 .map((tipo) => (
@@ -321,6 +327,7 @@ export default function TransacoesPage() {
               className="w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-gray-900 outline-none transition focus:border-[#0872C9] focus:ring-1 focus:ring-[#0872C9] disabled:bg-gray-100"
             >
               <option value="">Selecione uma categoria</option>
+              {/* Exibe somente categorias compatíveis com o tipo para reduzir erros de preenchimento antes do envio */}
               {categoriasDisponiveis.map((categoria) => (
                 <option key={categoria.id} value={categoria.id}>
                   {categoria.descricao} ({finalidadeCategoriaLabel[categoria.finalidade]})
